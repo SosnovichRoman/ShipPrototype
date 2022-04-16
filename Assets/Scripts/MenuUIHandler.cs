@@ -17,6 +17,8 @@ public class MenuUIHandler : MonoBehaviour
     private GameObject gameOverScreen;
     [SerializeField]
     private Text gemScoreText;
+    [SerializeField]
+    private GameObject scoreScreen;
 
     [SerializeField]
     private GameObject spaceshipParticle;
@@ -24,7 +26,7 @@ public class MenuUIHandler : MonoBehaviour
     [SerializeField]
     private AudioSource clickSound;
 
-    private int gemScore;
+    public int gemScore;
 
     private void Awake()
     {
@@ -45,6 +47,8 @@ public class MenuUIHandler : MonoBehaviour
         startScreen.SetActive(false);
         clickSound.Play();
         spaceshipParticle.SetActive(true);
+        scoreScreen.SetActive(true);
+        gemScoreText.text = "Gems: " + Instance.gemScore;
     }
 
     public void Exit()

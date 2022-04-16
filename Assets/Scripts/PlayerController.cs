@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.Instance.isPlayerAlive = false;
         MenuUIHandler.Instance.ShowRestartScreen();
+        SaveManager.Instance.Save(MenuUIHandler.Instance.gemScore);
         Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
         gameObject.SetActive(false);
     }
