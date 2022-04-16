@@ -31,6 +31,14 @@ public class Projectile : MonoBehaviour
         Detonate();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            Detonate();
+        }
+    }
+
     //Detonate when hits another object
     private void Detonate()
     {

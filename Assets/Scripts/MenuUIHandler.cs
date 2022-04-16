@@ -15,6 +15,9 @@ public class MenuUIHandler : MonoBehaviour
     [SerializeField]
     private Text gemScoreText;
 
+    [SerializeField]
+    private AudioSource clickSound;
+
     private int gemScore;
 
     private void Awake()
@@ -34,12 +37,14 @@ public class MenuUIHandler : MonoBehaviour
     {
         GameManager.Instance.isGameActive = true;
         startScreen.SetActive(false);
+        clickSound.Play();
     }
 
     public void RestartGame()
     {
         SceneManager.LoadScene("GameplayScene");
         gameOverScreen.SetActive(false);
+        clickSound.Play();
     }
 
     public void ShowRestartScreen()
