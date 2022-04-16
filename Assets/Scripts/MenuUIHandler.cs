@@ -16,6 +16,9 @@ public class MenuUIHandler : MonoBehaviour
     private Text gemScoreText;
 
     [SerializeField]
+    private GameObject spaceshipParticle;
+
+    [SerializeField]
     private AudioSource clickSound;
 
     private int gemScore;
@@ -38,6 +41,7 @@ public class MenuUIHandler : MonoBehaviour
         GameManager.Instance.isGameActive = true;
         startScreen.SetActive(false);
         clickSound.Play();
+        spaceshipParticle.SetActive(true);
     }
 
     public void RestartGame()

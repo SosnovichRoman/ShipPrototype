@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveDown : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 70f;
+    private float speed;
     // Start is called before the first frame update
     void Start()
     {

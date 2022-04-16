@@ -22,7 +22,7 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        spawnOffcet = new Vector3(0, emptyTile.GetComponentInChildren<SpriteRenderer>().bounds.size.y - 1, 0);
+        spawnOffcet = new Vector3(0, emptyTile.GetComponentInChildren<SpriteRenderer>().bounds.size.y - 2, 0);
         SpawnInitialTiles();
         
     }
