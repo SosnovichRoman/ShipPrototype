@@ -13,14 +13,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameObject[] muzzleFlash;
 
-    public float horizontalSpeed = 10.0f;
+    [SerializeField]
+    private float horizontalSpeed;
+    [SerializeField]
+    private Vector3 offset;
+    [SerializeField]
+    private float xBounds;
+    [SerializeField]
+    private float mobileSpeedMultiplecator;
 
-    public Vector3 offset = new Vector3(0, 2, 0);
+#if UNITY_IOS || UNITY_ANDROID
+    private float moveDirection;
+    private float horizontalTouchSpeed;
+#endif
 
     void Start()
     {
         //Spawn projectile
         InvokeRepeating("SpawnProjectile", 2, 2);
+
+        //Horizontal speed for mobile devices, relative to screensize
+#if UNITY_IOS || UNITY_ANDROID
+        horizontalTouchSpeed = Screen.width / (xBounds * 2) * mobileSpeedMultiplecator;
+#endif
     }
 
     void Update()
@@ -29,6 +44,31 @@ public class PlayerController : MonoBehaviour
         //Horizontal Movement
         float horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * horizontalSpeed * Time.deltaTime);
+
+#if UNITY_IOS || UNITY_ANDROID
+        if (Input.touchCount != 0)
+        {
+            Touch myTouch = Input.GetTouch(0);
+            if (myTouch.phase == TouchPhase.Moved)
+            {
+
+                Vector2 positionChange = myTouch.deltaPosition;
+                moveDirection = positionChange.normalized.x;
+                transform.Translate(Vector3.right * moveDirection * Time.deltaTime * horizontalTouchSpeed);
+            }
+        }
+#endif
+
+
+        //Keep player in Bounds
+        if (transform.position.x < -xBounds)
+        {
+            transform.position = new Vector3(-xBounds, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > xBounds)
+        {
+            transform.position = new Vector3(xBounds, transform.position.y, transform.position.z);
+        }
 
     }
 
