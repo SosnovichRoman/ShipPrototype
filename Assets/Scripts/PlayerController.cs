@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float mobileSpeedMultiplecator;
 
-#if UNITY_IOS || UNITY_ANDROID
+#if UNITY_IOS || UNITY_ANDROID || UNITY_WEBGL
     private float moveDirection;
     private float horizontalTouchSpeed;
 #endif
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         InvokeRepeating("SpawnProjectile", 2, 2);
 
         //Horizontal speed for mobile devices, relative to screensize
-#if UNITY_IOS || UNITY_ANDROID
+#if UNITY_IOS || UNITY_ANDROID || UNITY_WEBGL
         horizontalTouchSpeed = Screen.width / (xBounds * 2) * mobileSpeedMultiplecator;
 #endif
     }
