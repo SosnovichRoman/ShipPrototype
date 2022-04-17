@@ -12,3 +12,5 @@ ____
 
 ## Features
 + Data Persistence (Gem Score)
++ Sound
++ VFX
